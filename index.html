@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#table, 
+#table tr, 
+#table th,
+#table td{
+    border: 1px solid;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/tableColSwitcher.js"></script>
+<script>
+$(function(){
+    $("#table").tableColSwitcher();
+});
+</script>
+</head>
+<body>
+<div id="container">
+    <table id="table">
+        <tr>
+            <th>header01</th>
+            <th>header02</th>
+            <th>header03</th>
+            <th>header04</th>
+            <th>header05</th>
+        </tr>
+        <tr>
+            <td>data01</td>
+            <td>data02</td>
+            <td>data03</td>
+            <td>data04</td>
+            <td>data05</td>
+        </tr>
+        <tr>
+            <td>data11</td>
+            <td>data12</td>
+            <td>data13</td>
+            <td>data14</td>
+            <td>data15</td>
+        </tr>
+        <tr>
+            <td>data21</td>
+            <td>data22</td>
+            <td>data23</td>
+            <td>data24</td>
+            <td>data25</td>
+        </tr>
+        <tr>
+            <td>data31</td>
+            <td>data32</td>
+            <td>data33</td>
+            <td>data34</td>
+            <td>data35</td>
+        </tr>
+        <tr>
+            <td>data41</td>
+            <td>data42</td>
+            <td>data43</td>
+            <td>data44</td>
+            <td>data45</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
