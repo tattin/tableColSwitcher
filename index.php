@@ -7,5 +7,6 @@ $array = [
 foreach ($array as $val) {
     $arrayValues[] = $val[$_REQUEST['id']];
 }
-array_multisort($arrayValues, SORT_ASC, $array);
+$sort = ($_REQUEST['sort'] === "desc") ? SORT_DESC : SORT_ASC;
+array_multisort($arrayValues, $sort, $array);
 echo json_encode($array);

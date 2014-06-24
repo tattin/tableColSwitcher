@@ -12,6 +12,7 @@
             $(this).html('<a href="javascript:;" id="check_head' + i++ + '">' + $(this).html() + '</a>');
         });
 
+        menu += '<form name="check_form" id="check_form">';
         for (var i= 0; i < items.length; i++) {
             check = (localStorage.getItem("check" + i)) ? " checked" : "";
             menu += '<label>'
@@ -25,11 +26,16 @@
                 + items[i]
                 + '</label>';
         }
+        menu += '</form>';
         $element.before(menu);
 
         var init = (function(){
             $("input[id^='check']").each(function(){
                 colSwitch($(this));
+            });
+            // resetup click event
+            $("a[id^='check_head']").on("click", function(){
+                sortRows($(this));
             });
         });
 
@@ -58,18 +64,33 @@
         });
 
         $("a[id^='check_head']").on("click", function(){
-            console.log($(this).attr("id"));
+            sortRows($(this));
+        });
+        var sortRows = (function($head){
+            order = localStorage.getItem("order");
+            sort_key = localStorage.getItem("sort_key");
+
+            id = $head.attr("id").replace("check_head", "");
+
+            if (id == sort_key){
+                sort = (order == "desc") ? "asc" : "desc";
+            } else {
+                sort = "asc"; 
+            }
+            localStorage.setItem("sort_key", id);
+            localStorage.setItem("order", sort);
+
             $.ajax({
                 url: "index.php",
                 type: "POST",
                 data: {
-                    "id": $(this).attr("id").replace("check_head", ""),
-                    "sort": "ASC"
+                    "id": id,
+                    "sort": sort
                 },
                 async: false,
                 cache: false,
                 dataType: "JSON",
-                success: function(json_data){
+                success: function(json_data){   
                     data_table = "<tr>";
                     $tr = $element.find("tr").eq(0);
                     $tr.each(function(){
