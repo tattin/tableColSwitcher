@@ -1,6 +1,6 @@
 # tableColSwitcher.js
 
-## useage
+## usage
 
 - js
 ```
